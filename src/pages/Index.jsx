@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ContactDetails from "./ContactDetails";
 import { Box, Button, Container, Flex, Heading, Input, Stack, Text, useToast, VStack, CircularProgress, CircularProgressLabel, Image } from "@chakra-ui/react";
 import { FaSearch, FaHandshake, FaChartPie } from "react-icons/fa";
 
@@ -6,6 +7,7 @@ const Index = () => {
   const toast = useToast();
   const [projects, setProjects] = useState([]);
   const [search, setSearch] = useState("");
+  const [selectedProject, setSelectedProject] = useState(null);
   const [loading, setLoading] = useState(false);
 
   // Dummy success rate, in a real app this should come from server-side calculations
@@ -16,8 +18,8 @@ const Index = () => {
     setLoading(true);
     setTimeout(() => {
       setProjects([
-        { name: "Project Solar", description: "Renewable energy initiative", funded: true },
-        { name: "Project Health", description: "Healthcare for everyone", funded: false },
+        { name: "Project Solar", description: "Renewable energy initiative", funded: true, contact: "solar@projects.com" },
+        { name: "Project Health", description: "Healthcare for everyone", funded: false, contact: "health@projects.com" },
       ]);
       setLoading(false);
       toast({
@@ -59,11 +61,12 @@ const Index = () => {
             <Box key={index} p={5} shadow="md" borderWidth="1px" my={2}>
               <Heading fontSize="xl">{project.name}</Heading>
               <Text mt={4}>{project.description}</Text>
-              <Button mt={4} colorScheme={project.funded ? "green" : "red"} variant="solid" isDisabled={project.funded}>
+              <Button mt={4} colorScheme={project.funded ? "green" : "red"} variant="solid" isDisabled={project.funded} onClick={() => setSelectedProject(project)}>
                 {project.funded ? "Funded" : "Fund This Project"}
               </Button>
             </Box>
           ))}
+          {selectedProject && <ContactDetails project={selectedProject} />}
         </Box>
       </VStack>
     </Container>
