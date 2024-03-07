@@ -20,6 +20,9 @@ const Index = () => {
       setProjects([
         { name: "Project Solar", description: "Renewable energy initiative", funded: true, contact: "solar@projects.com" },
         { name: "Project Health", description: "Healthcare for everyone", funded: false, contact: "health@projects.com" },
+        { name: "Project Education", description: "Improving education systems", funded: false, contact: "edu@projects.com" },
+        { name: "Project Nutrition", description: "Nutritional support for communities", funded: true, contact: "nutrition@projects.com" },
+        { name: "Project Environment", description: "Preserving natural ecosystems", funded: false, contact: "environment@projects.com" },
       ]);
       setLoading(false);
       toast({
