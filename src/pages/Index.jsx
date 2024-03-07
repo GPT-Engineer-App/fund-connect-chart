@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ContactDetails from "./ContactDetails";
 import { Box, Button, Container, Flex, Heading, Input, Stack, Text, useToast, VStack, CircularProgress, CircularProgressLabel, Image } from "@chakra-ui/react";
-import { FaSearch, FaHandshake, FaChartPie } from "react-icons/fa";
+import { FaSearch, FaHandshake, FaChartPie, FaLightbulb } from "react-icons/fa";
 
 const Index = () => {
   const toast = useToast();
@@ -36,10 +36,11 @@ const Index = () => {
   };
 
   return (
-    <Container maxW="container.xl" p={5}>
+    <Container maxW="container.xl" p={5} bg="brand.800" color="white">
       <VStack spacing={5}>
-        <Heading as="h1" size="2xl">
-          <FaHandshake /> Funder Connect
+        <Heading as="h1" size="2xl" display="flex" alignItems="center">
+          <FaHandshake />
+          <span style={{ marginLeft: "0.5rem" }}>Funder Connect</span>
         </Heading>
         <Text>Connecting funders with project holders for a better future.</Text>
         <Flex>
@@ -53,8 +54,9 @@ const Index = () => {
             <CircularProgressLabel>{successRate}%</CircularProgressLabel>
           </CircularProgress>
           <Box>
-            <Heading as="h3" size="lg">
-              <FaChartPie /> Success Rate
+            <Heading as="h3" size="lg" display="flex" alignItems="center">
+              <FaChartPie />
+              <span style={{ marginLeft: "0.5rem" }}>Success Rate</span>
             </Heading>
             <Text>The rate of successful project funding within our platform.</Text>
           </Box>
@@ -62,7 +64,10 @@ const Index = () => {
         <Box w="100%">
           {projects.map((project, index) => (
             <Box key={index} p={5} shadow="md" borderWidth="1px" my={2}>
-              <Heading fontSize="xl">{project.name}</Heading>
+              <Heading fontSize="xl" display="flex" alignItems="center">
+                <FaLightbulb />
+                <span style={{ marginLeft: "0.5rem" }}>{project.name}</span>
+              </Heading>
               <Text mt={4}>{project.description}</Text>
               <Button mt={4} colorScheme={project.funded ? "green" : "red"} variant="solid" isDisabled={project.funded} onClick={() => setSelectedProject(project)}>
                 {project.funded ? "Funded" : "Fund This Project"}
