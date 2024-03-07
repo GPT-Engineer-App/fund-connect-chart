@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ContactDetails from "./ContactDetails";
+import PrivateChatBox from "./PrivateChatBox";
 import { Box, Button, Container, Flex, Heading, Input, Stack, Text, useToast, VStack, CircularProgress, CircularProgressLabel, Image } from "@chakra-ui/react";
 import { FaSearch, FaHandshake, FaChartPie, FaLightbulb } from "react-icons/fa";
 
@@ -74,7 +75,12 @@ const Index = () => {
               </Button>
             </Box>
           ))}
-          {selectedProject && <ContactDetails project={selectedProject} />}
+          {selectedProject && (
+            <>
+              <ContactDetails project={selectedProject} />
+              <PrivateChatBox />
+            </>
+          )}
         </Box>
       </VStack>
     </Container>
